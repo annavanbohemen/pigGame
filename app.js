@@ -1,5 +1,5 @@
 
-var scores, roundScore, activePlayer, gameActive;
+var scores, roundScore, activePlayer, gameActive, lastDice;
 
 startNewGame();
 
@@ -13,7 +13,15 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
 
-        // update round score if number is not 1
+        //implement 2times throwing 6 makes you lose score
+        /* if (dice === 6 && lastDice === 6) {
+            //Player looses score
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        } else 
+        */
+      
         if (dice !== 1) {
             //add to score
             roundScore += dice
@@ -22,6 +30,9 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
             nextPlayer()
         }
     }  
+        /*
+        lastDice = dice;
+        */
 })
 
 document.querySelector('.btn-hold').addEventListener('click', function() {
